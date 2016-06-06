@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Workspace name="" width="925" height="600">
+ <!--this file format is currently subject to change-->
+ <GraphNodes nodecount="4">
+  <GraphNode id="1" x="105.0000000" y="169.0000000" sx="64.0000000" sy="64.0000000" inputs="0" outputs="1">
+   <module name="builtin::testpattern"/>
+   <output label="Output"/>
+  </GraphNode>
+  <GraphNode id="2" x="441.0000000" y="252.0000000" sx="64.0000000" sy="64.0000000" inputs="1" outputs="2">
+   <module name="builtin::testpattern"/>
+   <input label="Input"/>
+   <output label="Output A"/>
+   <output label="Output B"/>
+  </GraphNode>
+  <GraphNode id="3" x="809.0000000" y="33.0000000" sx="64.0000000" sy="64.0000000" inputs="1" outputs="0">
+   <module name="builtin::testpattern"/>
+   <input label="Input"/>
+  </GraphNode>
+  <GraphNode id="4" x="809.0000000" y="492.0000000" sx="64.0000000" sy="64.0000000" inputs="1" outputs="0">
+   <module name="builtin::testpattern"/>
+   <input label="Input"/>
+  </GraphNode>
+ </GraphNodes>
+ <GraphConnections connectioncount="3">
+  <GraphConnection id="0" src_node="1" tgt_node="2" src_type="1" tgt_type="0" src_port="0" tgt_port="0"/>
+  <GraphConnection id="1" src_node="2" tgt_node="3" src_type="1" tgt_type="0" src_port="0" tgt_port="0"/>
+  <GraphConnection id="2" src_node="2" tgt_node="4" src_type="1" tgt_type="0" src_port="1" tgt_port="0"/>
+ </GraphConnections>
+</Workspace>
