@@ -72,7 +72,7 @@ CustomWidget::on_draw (const Cairo::RefPtr < Cairo::Context > &cr)
     const int width = allocation.get_width ();
     const int height = allocation.get_height ();
 
-		//std::cerr << "width: " << width << " height: " << height << std::endl;
+		std::cerr << "width: " << width << " height: " << height << std::endl;
     cr->scale (viewport_scale, viewport_scale);
     cr->translate (0, 0);
     //cr->translate(0.1, 0.1);
@@ -93,7 +93,7 @@ CustomWidget::on_draw (const Cairo::RefPtr < Cairo::Context > &cr)
     cr->line_to (width, height);
     cr->stroke ();
 
-    for (int x = 0; x < 1920; x += 8)
+    for (int x = 0; x < width; x += 4)
     {
         if (!(x % 64))
         {
@@ -102,7 +102,7 @@ CustomWidget::on_draw (const Cairo::RefPtr < Cairo::Context > &cr)
         }
         else
         {
-            cr->set_line_width (0.1);
+            cr->set_line_width (0.0);
             cr->set_source_rgba (0.8, 0.8, 0.8, 1.0);
         }
 
@@ -111,7 +111,7 @@ CustomWidget::on_draw (const Cairo::RefPtr < Cairo::Context > &cr)
         cr->stroke ();
     }
 
-    for (int y = 0; y < 1080; y += 8)
+    for (int y = 0; y < height; y += 4)
     {
         if (!(y % 64))
         {
@@ -120,7 +120,7 @@ CustomWidget::on_draw (const Cairo::RefPtr < Cairo::Context > &cr)
         }
         else
         {
-            cr->set_line_width (0.1);
+            cr->set_line_width (0.0);
             cr->set_source_rgba (0.8, 0.8, 0.8, 1.0);
         }
         cr->move_to (0, y);
@@ -128,7 +128,8 @@ CustomWidget::on_draw (const Cairo::RefPtr < Cairo::Context > &cr)
         cr->stroke ();
     }
 
-    /* draw the connections */
+
+    return true;
 
     for (std::vector < GraphConnection * >::iterator it =
                 connectionlist.begin (); it != connectionlist.end (); ++it)
@@ -535,16 +536,19 @@ CustomWidget::on_button_press_event (GdkEventButton * event)
     case MOUSEBUTTON_RIGHT:
         std::cerr << "Right Mouse Button: show menu" << std::endl;
 
+				/*
         RightClickMenu.show_all();
         RightClickMenu.accelerate(*this);
         RightClickMenu.popup(event->button, event->time);
         on_timeout();
+				*/
         break;
 
     case MOUSEBUTTON_LEFT:
         switch (event->type)
         {
         case GDK_BUTTON_PRESS:
+						/*
 
             if (hover_xref.node && hover_latch)
             {
@@ -553,10 +557,8 @@ CustomWidget::on_button_press_event (GdkEventButton * event)
                 {
                 case STATE_UNCONNECTED:
                     std::cerr << "+++ try to create new connection +++\n";
-                    /* store the hover reference as new connection reference */
                     dragmode = DRAG_CONNECTION;
                     CopyXRef (&hover_xref, &connect_xref);
-                    //ClearXRef (&hover_xref);
                     HoverUnlatch();
                     break;
                 case STATE_CONNECTED_ONE:
@@ -602,8 +604,7 @@ CustomWidget::on_button_press_event (GdkEventButton * event)
                 return true;
             }
 
-            /* FIXME: this is not z-order aware, it's very dumb right now */
-            /* select: single click - check if click was on canvas or overlapped with node */
+
             for (std::vector < GraphNode * >::iterator it = nodelist.begin ();
                     it != nodelist.end (); ++it)
             {
@@ -630,13 +631,13 @@ CustomWidget::on_button_press_event (GdkEventButton * event)
                 }
             }
 
-            /* clicked on canvas */
             //std::cerr << "+++ canvas click +++ \n";
 
             selected_node = NULL;
             on_timeout ();
             return true;
             break;
+				*/
         case GDK_2BUTTON_PRESS:
             /* no action bound right now */
             break;
